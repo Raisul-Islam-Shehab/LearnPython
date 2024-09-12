@@ -1,21 +1,27 @@
 name: Github Actions Demo
-run-name: ${{ github.actor }} is testing out Github Actions 
-on: 
-    push:
-        branches:
-            - main
-    pull_request:
-        branches:
-            - main
-    schedule:
-        - cron: '0 0 * * *'
-jobs:
-    my_first_job:
-        name: My job
-        runs-on: ubuntu-latest
-        steps:
-            - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
-            - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}"
-    
-        
+run-name: ${{ github.actor }} is testing out Github Actions
 
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  my_first_job:
+    name: My job
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "The name of the branch is ${{ github.ref }} and the repository is ${{ github.repository }}"
+      - name: Check out the repository to the runner
+        uses: actions/checkout@v4
+      - name: set up python
+        run: actions/setup-python@v4
+      - name: Run the script
+        run: python ./.github/scripts/my-script.py
