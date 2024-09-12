@@ -22,6 +22,6 @@ jobs:
       - name: Check out the repository to the runner
         uses: actions/checkout@v4
       - name: set up python
-        run: actions/setup-python@v4
+        uses: actions/setup-python@v4
       - name: Run the script
         run: python ./.github/scripts/my-script.py
