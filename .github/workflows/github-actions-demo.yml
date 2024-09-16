@@ -26,4 +26,6 @@ jobs:
         with:
             python-version: '3.10'
       - name: Run the script
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python ./.github/scripts/my-script.py
