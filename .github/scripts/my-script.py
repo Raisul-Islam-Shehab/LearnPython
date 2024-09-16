@@ -5,6 +5,10 @@ import os
 from github import Auth
 
 token = os.getenv("GH_TOKEN")
+
+if not token:
+    raise ValueError("GitHub token not found in environment variables!")
+    
 # using an access token
 auth = Auth.Token(token=token)
 
