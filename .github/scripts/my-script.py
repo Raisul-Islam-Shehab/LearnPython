@@ -6,7 +6,7 @@ from github import Auth
 
 token = os.getenv("GH_TOKEN")
 # using an access token
-auth = Auth.Token(token)
+auth = Auth.Token(token=token)
 
 # Public Web Github
 g = Github(auth=auth)
