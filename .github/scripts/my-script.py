@@ -4,7 +4,7 @@ import os
 # Authentication is defined via github.Auth
 from github import Auth
 
-token = os.getenv("GH_TOKEN")
+token = os.getenv("GITHUB_TOKEN")
 
 if not token:
     raise ValueError("GitHub token not found in environment variables!")
