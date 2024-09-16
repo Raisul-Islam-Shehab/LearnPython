@@ -15,7 +15,13 @@ auth = Auth.Token(token=token)
 # Public Web Github
 g = Github(auth=auth)
     
-for repo in g.get_user().get_repos():
-    print(repo.name)
+repo = g.get_repo("Raisul-Islam-Shehab/LearnPython")
+print(repo.name)
+
+branches = list(repo.get_branches())
+print(branches)
+
+main_branch = repo.get_branch(branch="main")
+print(main_branch.commit)
 
 g.close()
