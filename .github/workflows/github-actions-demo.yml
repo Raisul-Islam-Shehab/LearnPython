@@ -25,6 +25,8 @@ jobs:
         uses: actions/setup-python@v5.2.0
         with:
             python-version: '3.10'
+      - name: install PyGithub
+        run: pip install PyGithub
       - name: Run the script
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
