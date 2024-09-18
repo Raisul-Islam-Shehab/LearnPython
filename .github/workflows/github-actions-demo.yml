@@ -30,7 +30,7 @@ jobs:
             cache: 'pip'
 
       - name: install dependencies
-        run: pip install -r requirement.txt
+        run: pip install -r requirements.txt
 
       - name: format code using 'black'
         run: black ./.github/scripts
