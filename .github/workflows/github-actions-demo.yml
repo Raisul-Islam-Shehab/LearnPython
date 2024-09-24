@@ -38,7 +38,7 @@ jobs:
       - name: Run the script
         env: 
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python src/my-script.py
+        run: python src/my_script.py
 
       - name: Test the script
         run: pytest --cov=src src/test_script.py
