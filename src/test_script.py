@@ -1,5 +1,4 @@
 import my_script
-import pprint
 
 
 def test_get_latest_commit():
@@ -18,6 +17,7 @@ def test_get_open_issues():
         latestIssue["repository_url"]
         == "https://api.github.com/repos/Raisul-Islam-Shehab/LearnPython"
     )
+
 
 # test_get_latest_commit()
 # test_get_open_issues()

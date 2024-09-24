@@ -70,11 +70,11 @@ def get_latest_commit():
 
 def get_open_issues():
     # Fetch data using pagination
-    issues = get_paginated_data(
+    open_issues = get_paginated_data(
         f"{repo_url}/issues", github_headers, {"per_page": 1}
-        )
+    )
 
-    return issues
+    return open_issues
 
 
 def get_pull_requests():
