@@ -1,5 +1,4 @@
 import my_script
-import pytest
 
 
 def test_get_latest_commit():

@@ -70,8 +70,10 @@ def get_latest_commit():
 
 def get_open_issues():
     # Fetch data using pagination
-    issues = get_paginated_data(f"{repo_url}/issues", github_headers, {"per_page": 1})
-    # pprint.pprint(issues)
+    issues = get_paginated_data(
+        f"{repo_url}/issues", github_headers, {"per_page": 1}
+        )
+
     return issues
 
 
@@ -79,14 +81,14 @@ def get_pull_requests():
     pull_requests = get_paginated_data(
         f"{repo_url}/pulls", github_headers, {"per_page": 1}
     )
-    # pprint.pprint(pull_requests)
+
     return pull_requests
 
 
 def print_latest_commit():
     latestCommit = get_latest_commit()
     pprint.pprint(latestCommit)
-    
+
 
 def print_open_issues_details():
     open_issues = get_open_issues()
@@ -98,7 +100,6 @@ def print_open_issues_details():
         i += 1
 
 
-
 def print_pull_requests_details():
     pull_requests = get_pull_requests()
     i = 1
@@ -107,10 +108,9 @@ def print_pull_requests_details():
         print(f"\t Description: {request['body']}")
         print(f"\t Status: {request['state']}")
         i += 1
-        
+
 
 # print_open_issues_details()
 # print_latest_commit()
 # print_pull_requests_details()
 get_open_issues()
-        
