@@ -2,14 +2,14 @@ name: Github Actions Demo
 run-name: ${{ github.actor }} is testing out Github Actions
 
 on:
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
-  # schedule:
-  #   - cron: "0 0 * * *"
+  schedule:
+    - cron: "0 0 * * *"
 
 jobs:
   my_first_job:
@@ -33,9 +33,12 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: ensure code style consistency using 'flake8'
-        run: flake8 scripts
+        run: flake8 src
         
       - name: Run the script
         env: 
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python scripts/my-script.py
+        run: python src/my-script.py
+
+      - name: Test the script
+        run: pytest --cov=src src/test_script.py

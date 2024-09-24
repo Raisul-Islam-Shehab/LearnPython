@@ -1,28 +1,15 @@
-from my_script import getLatestCommit
-# import pytest
-import unittest
-
-class TestMyScript(unittest.TestCase):
-    def test_status(self):
-        response = getLatestCommit()
-        self.assertEqual(response.status_code, 200)
-    
-    def test_committer(self):
-        response = getLatestCommit()
-        commits = response.json()
-        latestCommit = commits[0]
-        # print(latestCommit)
-        self.assertEqual(latestCommit['commit']['committer']['name'], "Raisul Islam Shehab")
-    
-    # def test_addition(self):
-    #     self.assertEqual(my_script.addition(2,3), 5)
+import my_script
+import pytest
 
 
-if __name__ == "__main__":
-    unittest.main(verbosity=2)
+def test_get_latest_commit():
+    response = my_script.get_latest_commit()
+    assert response[0]["commit"]["committer"]["name"] == "Raisul Islam Shehab"
 
-# def test_addition():
-#     assert my_script.addition(2,3) == 5
 
-# python -m coverage run -m unittest
-# python -m coverage report
+def test_get_open_issues():
+    response = my_script.get_open_issues()
+    assert (
+        response[0]["repository_url"]
+        == "https://api.github.com/repos/Raisul-Islam-Shehab/LearnPython"
+    )

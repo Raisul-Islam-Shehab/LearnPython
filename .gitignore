@@ -24,3 +24,7 @@ TestResults.xml
 .venv
 #env
 *.env
+#coverage
+.coverage
+#pycache
+*pycache*
