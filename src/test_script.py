@@ -1,5 +1,7 @@
 import my_script
+
 # import pprint
+
 
 def test_get_latest_commit():
     response = my_script.get_latest_commit()
