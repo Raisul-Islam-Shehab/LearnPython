@@ -64,8 +64,7 @@ def get_latest_commit():
     response = requests.get(
         f"{repo_url}/commits", headers=github_headers, params={"per_page": 1}
     )
-    latestCommit = response.json()
-    return latestCommit
+    return response
 
 
 def get_open_issues():
@@ -86,7 +85,8 @@ def get_pull_requests():
 
 
 def print_latest_commit():
-    latestCommit = get_latest_commit()
+    response = get_latest_commit()
+    latestCommit = response.json()
     pprint.pprint(latestCommit)
 
 

@@ -28,3 +28,5 @@ TestResults.xml
 .coverage
 #pycache
 *pycache*
+#temporary
+tempCodeRunner*
