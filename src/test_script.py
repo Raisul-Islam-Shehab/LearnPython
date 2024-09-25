@@ -11,7 +11,7 @@ def test_get_latest_commit():
     print(type(latestCommit))
     # pprint.pprint(response)
     print(latestCommit["commit"]["committer"]["name"])
-    # assert latestCommit["commit"]["committer"]["name"] == "Raisul Islam Shehab"
+    # assert latestCommit["commit"]["committer"]== "Raisul Islam Shehab"
 
 
 def test_get_open_issues():
