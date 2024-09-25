@@ -110,7 +110,7 @@ def print_pull_requests_details():
         i += 1
 
 
-# print_open_issues_details()
+print_open_issues_details()
 # print_latest_commit()
 # print_pull_requests_details()
-get_open_issues()
+# get_open_issues()
