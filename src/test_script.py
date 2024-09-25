@@ -50,3 +50,6 @@ class TestMyScript(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+
+# python -m coverage run -m unittest
+# python -m coverage report
