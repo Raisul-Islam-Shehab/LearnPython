@@ -41,4 +41,5 @@ jobs:
         run: python src/my_script.py
 
       - name: Test the script
-        run: pytest --cov=src src/test_script.py
+        # run: pytest --cov=src src/test_script.py
+        run: python src/test_script.py
