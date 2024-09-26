@@ -1,4 +1,4 @@
-name: Github Actions Demo
+name: Github Actions Demo 2
 run-name: ${{ github.actor }} is testing out Github Actions
 
 on:
