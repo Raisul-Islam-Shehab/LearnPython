@@ -43,4 +43,4 @@ jobs:
       - name: Test the script
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: pytest --cov=src src/test_script.py
+        run: pytest --cov=src --cov-report html:testResult/ src/test_script.py
