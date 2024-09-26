@@ -2,14 +2,7 @@ name: Github Actions Demo
 run-name: ${{ github.actor }} is testing out Github Actions
 
 on:
-  # push:
-  #   branches:
-  #     - main
-  pull_request:
-    branches:
-      - main
-  # schedule:
-  #   - cron: "0 0 * * *"
+  workflow_dispatch:
 
 jobs:
   my_first_job:
