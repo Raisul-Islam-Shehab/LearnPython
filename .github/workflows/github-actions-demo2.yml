@@ -129,3 +129,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: pytest --cov=src src/test_script.py --cov-report=html:testResult/
+
+      - name: Upload the test result
+        uses: actions/upload-artifact@v4
+        with:
+          name: Test-Result
+          path: testResult/
+          
+
