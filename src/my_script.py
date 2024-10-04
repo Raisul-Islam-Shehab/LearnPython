@@ -115,4 +115,4 @@ def print_pull_requests_details():
 # print_latest_commit()
 # print_pull_requests_details()
 
-get_latest_commit()
+# get_latest_commit()

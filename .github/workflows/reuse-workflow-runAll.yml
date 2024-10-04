@@ -16,6 +16,9 @@ on:
         src-test:
             required: true
             type: string
+        src-directory:
+            required: true
+            type: string
 jobs:
     run_all:
         name: Run All
@@ -47,7 +50,7 @@ jobs:
               pip install -r ${{ inputs.dependency-file }}
     
           - name: ensure code style consistency using 'flake8'
-            run: flake8 src
+            run: flake8 ${{ inputs.src-directory }}
             continue-on-error: true
     
           - name: Run the script
