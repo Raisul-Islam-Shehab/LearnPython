@@ -4,63 +4,66 @@ run-name: ${{ github.actor }} is testing out Github Actions
 on:
   workflow_call:
     inputs:
-        caller-name:
-          required: true
-          type: string
-        dependency-file:
-          required: true
-          type: string
-        src-script:
-          required: true
-          type: string
-        src-test:
-            required: true
-            type: string
-        src-directory:
-            required: true
-            type: string
+      caller-name:
+        required: true
+        type: string
+      dependency-file:
+        required: true
+        type: string
+      src-script:
+        required: true
+        type: string
+      src-test:
+        required: true
+        type: string
+      src-directory:
+        required: true
+        type: string
+    secrets:
+      GITHUB_TOKEN:
+        required: true
 jobs:
-    run_all:
-        name: Run All
-        runs-on: ubuntu-latest
-        strategy:
-          matrix:
-            python-version: ["3.10", "3.12"]
-    
-        steps:
-          - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
-          - run: echo "The name of the branch is ${{ github.ref }} and the repository is ${{ github.repository }}"
-          - run: echo "The name of the caller is ${{ inputs.caller-name }}"
-    
-          - name: Check out the repository to the runner
-            uses: actions/checkout@v4
-    
-          - name: set up python
-            uses: actions/setup-python@v5.2.0
-            with:
-              python-version: ${{ matrix.python-version }}
-              cache: "pip"
-    
-          - name: Display Python version
-            run: python -c "import sys; print(sys.version)"
-    
-          - name: install dependencies
-            run: |
-              python -m pip install --upgrade pip
-              pip install -r ${{ inputs.dependency-file }}
-    
-          - name: ensure code style consistency using 'flake8'
-            run: flake8 ${{ inputs.src-directory }}
-            continue-on-error: true
-    
-          - name: Run the script
-            env:
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            run: python ${{ inputs.src-script }}
-            continue-on-error: true
-    
-          - name: Test the script
-            env:
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            run: pytest --cov=src ${{ inputs.src-test }} --cov-report=html
-            continue-on-error: true
+  run_all:
+    name: Run All
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.12"]
+
+    steps:
+      - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "The name of the branch is ${{ github.ref }} and the repository is ${{ github.repository }}"
+      - run: echo "The name of the caller is ${{ inputs.caller-name }}"
+
+      - name: Check out the repository to the runner
+        uses: actions/checkout@v4
+
+      - name: set up python
+        uses: actions/setup-python@v5.2.0
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
+
+      - name: install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r ${{ inputs.dependency-file }}
+
+      - name: ensure code style consistency using 'flake8'
+        run: flake8 ${{ inputs.src-directory }}
+        continue-on-error: true
+
+      - name: Run the script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python ${{ inputs.src-script }}
+        continue-on-error: true
+
+      - name: Test the script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: pytest --cov=src ${{ inputs.src-test }} --cov-report=html
+        continue-on-error: true
