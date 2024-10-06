@@ -19,6 +19,9 @@ on:
       src-directory:
         required: true
         type: string
+    secrets:
+        token:
+          required: true
 
 jobs:
   run_all:
@@ -56,12 +59,12 @@ jobs:
 
       - name: Run the script
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.token }}
         run: python ${{ inputs.src-script }}
         continue-on-error: true
 
       - name: Test the script
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.token }}
         run: pytest --cov=src ${{ inputs.src-test }} --cov-report=html
         continue-on-error: true
