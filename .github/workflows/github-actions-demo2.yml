@@ -3,11 +3,11 @@ run-name: ${{ github.actor }} is testing out Github Actions
 
 on:
   workflow_dispatch:
-  pull_request:
-    types: [opened, closed]
-  push:
-    branches:
-      - main
+  # pull_request:
+  #   types: [opened, closed]
+  # push:
+  #   branches:
+  #     - main
 
 jobs:
   code_style:
@@ -44,7 +44,7 @@ jobs:
         continue-on-error: true
 
   run_all:
-    if: ${{ github.event.pull_request.state == 'closed' }}
+    if:  github.event_name == 'pull_request' && github.event.pull_request.state == 'open'
     name: Run All
     runs-on: ubuntu-latest
     strategy:
@@ -87,7 +87,7 @@ jobs:
         run: pytest --cov=src src/test_script.py --cov-report=html
 
   test_script:
-    if: ${{ github.event.pull_request.state == 'open' }}
+    if: github.event_name == 'pull_request' && github.event.pull_request.merged == true
     name: My job
     runs-on: ubuntu-latest
     strategy:

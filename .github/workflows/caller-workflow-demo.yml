@@ -18,7 +18,7 @@ jobs:
       dependency-file: requirements.txt
 
   calling-reuse-workflow-test:
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' && github.event.pull_request.state == 'open'
     uses: ./.github/workflows/reuse-workflow-test.yml
     with:
       caller-name: Raisul Islam Shehab
@@ -30,6 +30,7 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
 
   calling-reuse-workflow-runAll:
+    if: github.event_name == 'pull_request' && github.event.pull_request.merged == true
     uses: ./.github/workflows/reuse-workflow-runAll.yml
     with:
       caller-name: Raisul Islam Shehab
