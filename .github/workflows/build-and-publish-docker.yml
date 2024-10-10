@@ -1,4 +1,4 @@
-name: Called Workflow demo run all
+name: Build and publish Dockerhub
 run-name: ${{ github.actor }} is testing out Github Actions
 
 on:

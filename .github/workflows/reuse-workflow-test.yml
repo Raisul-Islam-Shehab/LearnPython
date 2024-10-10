@@ -1,4 +1,4 @@
-name: Called Workflow demo test
+name: Reuse Workflow demo test
 run-name: ${{ github.actor }} is testing out Github Actions
 
 on:
