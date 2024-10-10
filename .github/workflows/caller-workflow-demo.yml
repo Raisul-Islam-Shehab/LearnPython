@@ -11,7 +11,7 @@ on:
 
 jobs:
   calling-reuse-workflow-style:
-    uses: ./.github/workflows/resuse-workflow-style.yml@main
+    uses: ./.github/workflows/resuse-workflow-style.yml
     with:
       caller-name: Raisul Islam Shehab
       src-directory: src
@@ -19,7 +19,7 @@ jobs:
 
   calling-reuse-workflow-test:
     if: github.event_name == 'pull_request'
-    uses: ./.github/workflows/reuse-workflow-test.yml@main
+    uses: ./.github/workflows/reuse-workflow-test.yml
     with:
       caller-name: Raisul Islam Shehab
       dependency-file: requirements.txt
@@ -30,7 +30,7 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
 
   calling-reuse-workflow-runAll:
-    uses: ./.github/workflows/reuse-workflow-runAll.yml@main
+    uses: ./.github/workflows/reuse-workflow-runAll.yml
     with:
       caller-name: Raisul Islam Shehab
       src-directory: src
