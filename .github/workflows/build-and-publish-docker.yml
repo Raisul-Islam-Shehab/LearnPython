@@ -2,7 +2,7 @@ name: Called Workflow demo run all
 run-name: ${{ github.actor }} is testing out Github Actions
 
 on:
-  workflow_call:
+  workflow_dispatch:
 
 jobs:
   build-and-publish:
