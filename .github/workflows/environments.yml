@@ -1,0 +1,29 @@
+name: Environments Demo
+run-name: ${{ github.actor }} is testing out Github Actions
+
+on:
+  workflow_dispatch:
+
+jobs:
+  dev_deployment:
+    name: Dev Deployment
+    runs-on: ubuntu-latest
+    environment: dev
+
+    steps:
+      - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "The name of the branch is ${{ github.ref }} and the repository is ${{ github.repository }}"
+      - run: echo "The name of the environment is ${{github.job }}"
+
+  prod_deployment:
+    name: Prod Deployment
+    runs-on: ubuntu-latest
+    environment: prod
+
+    steps:
+      - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "The name of the branch is ${{ github.ref }} and the repository is ${{ github.repository }}"
+      - run: echo "The name of the environment is ${{github.job }}"
+
+
+    
