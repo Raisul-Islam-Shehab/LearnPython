@@ -1,0 +1,43 @@
+name: Deploy to different environment
+run-name: ${{ github.actor }} is testing out Environment Deployment
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to deploy"
+        required: true
+        default: dev
+        type: choice
+        options:
+          - dev
+          - prod
+
+jobs:
+  deploy:
+    name: Deploy to dockerhub
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+
+    steps:
+      - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "The name of the branch is ${{ github.ref }} and the repository is ${{ github.repository }}"
+      - run: echo "The name of the environment is ${{ inputs.environment }}"
+
+      - name: Print Variables
+        run: echo " ${{ vars.MY_ENV }} "
+
+    #   - name: Login to Docker Hub
+    #     uses: docker/login-action@v3
+    #     with:
+    #       username: ${{ vars.DOCKERHUB_USERNAME }}
+    #       password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    #   - name: Set up Docker Buildx
+    #     uses: docker/setup-buildx-action@v3
+
+    #   - name: Build and push
+    #     uses: docker/build-push-action@v6
+    #     with:
+    #       push: true
+    #       tags: ${{ vars.DOCKERHUB_USERNAME }}/new-repo:latest
